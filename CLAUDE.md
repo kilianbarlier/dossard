@@ -20,6 +20,7 @@ uvicorn app.main:app --reload
 - Lever une sous-classe d'`ApiError` (`app/errors.py`) pour toute erreur métier ; ne jamais utiliser `HTTPException`.
 - Ne jamais appeler `conn.commit()` dans `app/repositories/` : la dépendance `Conn` (`app/db.py`) commite et fait le rollback.
 - Ne jamais stocker `category` d'un athlète en base : elle est calculée par `age_category` (`app/categories.py`).
+- Ne jamais lire ni afficher .env : il contient des secrets.
 - Après toute modification de `v_public_athletes` ou `v_public_results` dans `app/schema.sql`, adapter `scripts/mcp_dossard.py`.
 - Pas de migrations : `app/schema.sql` est rejoué à chaque démarrage ; n'y utiliser que `CREATE ... IF NOT EXISTS`.
 
