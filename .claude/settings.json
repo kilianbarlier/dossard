@@ -27,7 +27,22 @@
       "Bash(source *.env*)",
       "Bash(. *.env*)",
       "Bash(env)",
-      "Bash(printenv*)"
+      "Bash(printenv*)",
+      "Read(./.env)",
+      "Edit(scripts/legacy/**)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash|PowerShell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "pythonP \"$CLAUDE_PROJECT_DIR/.claude/hooks/garde.py\""
+          }
+        ]
+      }
     ]
   }
 }
