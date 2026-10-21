@@ -30,7 +30,9 @@
       "Bash(printenv*)",
       "Read(./.env)",
       "Edit(scripts/legacy/**)"
-    ]
+    ],
+    "allow": ["mcp__dossard__list_views"],
+    "ask": ["mcp__dossard__query_view"]
   },
   "hooks": {
     "PreToolUse": [
@@ -39,10 +41,22 @@
         "hooks": [
           {
             "type": "command",
-            "command": "pythonP \"$CLAUDE_PROJECT_DIR/.claude/hooks/garde.py\""
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/garde.py\""
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__dossard__.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python",
+            "args": ["${CLAUDE_PROJECT_DIR}/.claude/hooks/journal_mcp.py"],
+            "onFailure": "block"
           }
         ]
       }
+
     ]
   }
 }
